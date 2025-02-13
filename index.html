@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine Party</title>
+  <style>
+    /* Allgemeines Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #FFC1E3, #FFDEE9);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    /* Startseite */
+    #main {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+    }
+    #main h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #D6336C;
+      text-shadow: 1px 1px 2px #fff;
+    }
+    .choice-button {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1em;
+      background: #fff;
+      border: 2px solid #D6336C;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .choice-button:hover {
+      background: #FFD1DC;
+    }
+    /* Feierbereich (unsichtbar bis Klick) */
+    #celebration {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Rotierender Container für Capybaras */
+    #capybara-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      margin-top: -150px;
+      margin-left: -150px;
+      animation: rotate 10s linear infinite;
+    }
+    .capybara {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      /* Platzhalterbild – ersetze den Link gern durch ein echtes Capybara-Bild */
+      background: url('https://via.placeholder.com/50?text=Capy') no-repeat center/cover;
+      border-radius: 50%;
+    }
+    /* Positionierung der 12 Capybaras im Kreis */
+    #capy1  { transform: rotate(0deg)    translate(120px) rotate(0deg); }
+    #capy2  { transform: rotate(30deg)   translate(120px) rotate(-30deg); }
+    #capy3  { transform: rotate(60deg)   translate(120px) rotate(-60deg); }
+    #capy4  { transform: rotate(90deg)   translate(120px) rotate(-90deg); }
+    #capy5  { transform: rotate(120deg)  translate(120px) rotate(-120deg); }
+    #capy6  { transform: rotate(150deg)  translate(120px) rotate(-150deg); }
+    #capy7  { transform: rotate(180deg)  translate(120px) rotate(-180deg); }
+    #capy8  { transform: rotate(210deg)  translate(120px) rotate(-210deg); }
+    #capy9  { transform: rotate(240deg)  translate(120px) rotate(-240deg); }
+    #capy10 { transform: rotate(270deg)  translate(120px) rotate(-270deg); }
+    #capy11 { transform: rotate(300deg)  translate(120px) rotate(-300deg); }
+    #capy12 { transform: rotate(330deg)  translate(120px) rotate(-330deg); }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    /* Cartoon Carrots */
+    .carrot {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      /* Platzhalterbild – ersetze den Link gern durch ein echtes Cartoon-Karotten-Bild */
+      background: url('https://via.placeholder.com/50?text=Carrot') no-repeat center/cover;
+    }
+    /* Positioniere drei Karotten am unteren Bereich */
+    #carrot1 { bottom: 20px; left: 20%; }
+    #carrot2 { bottom: 20px; left: 45%; }
+    #carrot3 { bottom: 20px; left: 70%; }
+    /* Disco-Kugel */
+    #disco-ball {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, #fff, #ccc);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      animation: spin 3s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    /* Party-Elemente: Konfetti / Partyfountains mit Glitzer */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #FFD700;
+      opacity: 0.8;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      0%   { top: -10px; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Startseite -->
+  <div id="main">
+    <h1>Willst du mein Valentine sein?</h1>
+    <div>
+      <div class="choice-button" onclick="startParty()">Ja</div>
+      <div class="choice-button" onclick="startParty()">Jaa</div>
+    </div>
+  </div>
+
+  <!-- Feierbereich -->
+  <div id="celebration">
+    <!-- Rotierender Capybara-Kreis -->
+    <div id="capybara-container">
+      <div class="capybara" id="capy1"></div>
+      <div class="capybara" id="capy2"></div>
+      <div class="capybara" id="capy3"></div>
+      <div class="capybara" id="capy4"></div>
+      <div class="capybara" id="capy5"></div>
+      <div class="capybara" id="capy6"></div>
+      <div class="capybara" id="capy7"></div>
+      <div class="capybara" id="capy8"></div>
+      <div class="capybara" id="capy9"></div>
+      <div class="capybara" id="capy10"></div>
+      <div class="capybara" id="capy11"></div>
+      <div class="capybara" id="capy12"></div>
+    </div>
+    <!-- Cartoon Karotten -->
+    <div class="carrot" id="carrot1"></div>
+    <div class="carrot" id="carrot2"></div>
+    <div class="carrot" id="carrot3"></div>
+    <!-- Disco-Kugel -->
+    <div id="disco-ball"></div>
+    <!-- Party-Konfetti -->
+    <script>
+      function createConfetti() {
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.classList.add('confetti');
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.animationDelay = Math.random() * 3 + 's';
+          document.getElementById('celebration').appendChild(confetti);
+        }
+      }
+      createConfetti();
+    </script>
+  </div>
+
+  <!-- JavaScript: Wechsel von Startseite zu Party -->
+  <script>
+    function startParty() {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('celebration').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
