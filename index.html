@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine Einladung</title>
+  <style>
+    /* Grundlayout und Hintergrund im sanften, romantischen Ghibli-Stil */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #FFC1CC, #FFDEE9);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Startbildschirm */
+    .main {
+      text-align: center;
+      color: #fff;
+      z-index: 10;
+    }
+    .main h1 {
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+    .button-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    .btn {
+      background-color: rgba(255,255,255,0.8);
+      border: none;
+      padding: 15px 30px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+    }
+    /* Feierbereich, der nach Klick eingeblendet wird */
+    .celebration {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+    }
+    /* Discokugel */
+    .disco {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: silver;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: spin 4s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    /* Mariachi Band Platzhalter */
+    .mariachi {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1.2em;
+    }
+    /* Konfetti-Effekt */
+    .confetti-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      opacity: 0.8;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Startbildschirm mit Frage und Buttons -->
+  <div class="main" id="main">
+    <h1>Willst du mein Valentine sein?</h1>
+    <div class="button-container">
+      <button class="btn" onclick="showCelebration()">Ja</button>
+      <button class="btn" onclick="showCelebration()">Jaa</button>
+    </div>
+  </div>
+  
+  <!-- Feierbereich, der nach Klick eingeblendet wird -->
+  <div class="celebration" id="celebration">
+    <div class="disco"></div>
+    <div class="mariachi">Mariachi Band</div>
+    <div class="confetti-container" id="confetti-container"></div>
+  </div>
+  
+  <script>
+    // Bei Klick auf einen der Buttons wird der Startbildschirm versteckt und der Feierbereich angezeigt
+    function showCelebration() {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('celebration').style.display = 'block';
+      createConfetti(100);
+    }
+    
+    // Erzeugt Konfetti-Elemente mit zufälliger Position und Farbe
+    function createConfetti(count) {
+      const container = document.getElementById('confetti-container');
+      for (let i = 0; i < count; i++) {
+        let confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = randomColor();
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(confetti);
+      }
+    }
+    
+    // Liefert eine zufällige Farbe aus einer Auswahl
+    function randomColor() {
+      const colors = ['#FF69B4', '#FFB6C1', '#FFD700', '#ADFF2F', '#00CED1', '#BA55D3'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
